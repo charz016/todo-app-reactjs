@@ -26,15 +26,14 @@ const ListTodo: React.FC = () => {
         setTodos(newTodos);
     };
 
-    return (<div>
+    return (<div style={{ width:"80%" }}>
         {todos.map((todo, index) => {
             return <Card key={index}>
                 <Card.Body>
                     <div className="todo">
-                        <span style={{ textDecoration: !todo.completed ? "line-through" : ""}}>{todo.title}</span>
+                        <span style={{ textDecoration: !todo.completed ? "line-through" : "" }}>{todo.title}</span>
                         <div>
                             <Button variant="outline-success" onClick={() => markTodo(index)}>✓</Button>{' '}
-                            <Button variant="outline-danger" onClick={() => removeTodo(index)}>✕</Button>
                         </div>
                     </div>
                 </Card.Body>

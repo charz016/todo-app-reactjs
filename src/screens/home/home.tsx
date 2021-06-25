@@ -1,6 +1,6 @@
 import React from 'react';
-import { getTodoFalse } from '../api/todo';
-import { Todos } from '../types/todo';
+import { getTodoFalse } from '../../api/todo';
+import { Todos } from '../../types/todo';
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 

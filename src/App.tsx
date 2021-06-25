@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './screens/home'
-import ListTodo from './screens/list-todo'
+import Home from './screens/home/home'
+import ListTodo from './screens/todo/list-todo'
 
 function App() {
   return (

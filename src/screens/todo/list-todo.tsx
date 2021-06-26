@@ -3,11 +3,14 @@ import { getTodo } from '../../api/todo';
 import { Todos } from '../../types/todo';
 import { Button, Card } from 'react-bootstrap';
 import './list-todo.scss';
+import AddTodoModal from './components/add-todo-modal/add-todo-modal'
 
 
 
 const ListTodo: React.FC = () => {
     const [todos, setTodos] = React.useState<Todos[]>([]);
+    const [openModal, setOpenModal] = React.useState(false);
+
 
     React.useEffect(() => {
         getTodo().then(response => response.json())
@@ -26,7 +29,23 @@ const ListTodo: React.FC = () => {
         setTodos(newTodos);
     };
 
-    return (<div style={{ width:"80%" }}>
+    const handleShow = (): void => {
+        setOpenModal(true);
+    };
+    const handleClose = (): void => {
+        setOpenModal(false);
+    };
+
+    const saveTodo = (todo: string): void => {
+        console.log(todo);
+        setOpenModal(false);
+    }
+
+    return (<div style={{ width: "80%" }}>
+        <AddTodoModal isActive={openModal} closeModal={handleClose} addTask={saveTodo} ></AddTodoModal>
+        <div className="container-button">
+            <Button className="button-modal" variant="primary" onClick={handleShow}>Agregar tarea</Button>
+        </div>
         {todos.map((todo, index) => {
             return <Card key={index}>
                 <Card.Body>

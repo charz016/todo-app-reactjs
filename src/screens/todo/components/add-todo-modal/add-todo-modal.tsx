@@ -1,6 +1,5 @@
 import React from 'react';
 import { Modal, Button, InputGroup, FormControl, Form } from 'react-bootstrap'
-import { Todos } from '../../../../types/todo';
 
 
 interface Props {

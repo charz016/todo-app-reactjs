@@ -14,7 +14,7 @@ const ListTodo: React.FC = () => {
 
     React.useEffect(() => {
         getTodo().then(response => response.json())
-            .then((results: Todos[]) => setTodos(results.sort(todo => todo.completed ? -1 : 1)))
+            .then((results: Todos[]) => setTodos(results.sort(todo => todo.completed ? 1 : -1)))
     }, [])
 
     const markTodo = (index: number) => {
@@ -23,11 +23,11 @@ const ListTodo: React.FC = () => {
         setTodos(newTodos);
     };
 
-    const removeTodo = (index: number) => {
-        const newTodos = [...todos];
-        newTodos.splice(index, 1);
-        setTodos(newTodos);
-    };
+    // const removeTodo = (index: number) => {
+    //     const newTodos = [...todos];
+    //     newTodos.splice(index, 1);
+    //     setTodos(newTodos);
+    // };
 
     const handleShow = (): void => {
         setOpenModal(true);
@@ -36,8 +36,14 @@ const ListTodo: React.FC = () => {
         setOpenModal(false);
     };
 
-    const saveTodo = (todo: string): void => {
-        console.log(todo);
+    const saveTodo = (title: string): void => {
+        const todo: Todos = {
+            completed: false,
+            id: 201,
+            title: title,
+            userId: 1,
+        }
+        todos.unshift(todo)
         setOpenModal(false);
     }
 
@@ -50,9 +56,11 @@ const ListTodo: React.FC = () => {
             return <Card key={index}>
                 <Card.Body>
                     <div className="todo">
-                        <span style={{ textDecoration: !todo.completed ? "line-through" : "" }}>{todo.title}</span>
+                        <span style={{ textDecoration: todo.completed ? "line-through" : "" }}>{todo.title}</span>
                         <div>
-                            <Button variant="outline-success" onClick={() => markTodo(index)}>✓</Button>{' '}
+                            {!todo.completed ? <Button variant="outline-success" onClick={() => markTodo(index)}>✓</Button> :
+                                <Button variant="outline-danger" onClick={() => markTodo(index)}>X</Button>}
+
                         </div>
                     </div>
                 </Card.Body>

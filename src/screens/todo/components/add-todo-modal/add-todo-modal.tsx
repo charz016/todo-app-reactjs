@@ -39,6 +39,7 @@ const AddTodoModal: React.FC<Props> = (props) => {
                             placeholder="Escribe la tarea"
                             aria-describedby="basic-addon2"
                             onChange={handleInputChange}
+                            required
                         />
                         <InputGroup.Append>
                             <Button variant="outline-secondary" type="submit" >agregar</Button>
